@@ -1,0 +1,23 @@
+{
+  "name": "emailer",
+  "version": "1.0.0",
+  "description": "reactive demo; emailer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Runnable/reactive-demo.git"
+  },
+  "author": "anandkumarpatel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Runnable/reactive-demo/issues"
+  },
+  "homepage": "https://github.com/Runnable/reactive-demo#readme",
+  "dependencies": {
+    "nodemailer": "^3.0.0",
+    "ponos": "^5.8.2"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "parser",
+  "version": "1.0.0",
+  "description": "reactive demo; parser",
+  "main": "index.js",
+  "dependencies": {
+    "joi": "^9.0.4",
+    "ponos": "^5.8.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Runnable/reactive-demo.git"
+  },
+  "author": "anandkumarpatel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Runnable/reactive-demo/issues"
+  },
+  "homepage": "https://github.com/Runnable/reactive-demo#readme"
+}

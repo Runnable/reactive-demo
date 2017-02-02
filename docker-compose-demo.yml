@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+  db:
+    restart: always
+    build: ./db
+    environment:
+      RABBITMQ_HOSTNAME: reactive.runnable.com
+      REDIS_HOST: redis
+    links:
+    - redis
+    depends_on:
+    - redis
+
+  emailer:
+    restart: always
+    build: ./emailer
+    environment:
+      RABBITMQ_HOSTNAME: reactive.runnable.com
+      EMAIL_ADDR: lucepeye@go2usa.info
+
+  parser:
+    restart: always
+    build: ./parser
+    environment:
+      RABBITMQ_HOSTNAME: reactive.runnable.com
+    depends_on:
+    - db
+
+  redis:
+    image: redis:3.0
+    restart: always
+    ports:
+    - 6379:6379

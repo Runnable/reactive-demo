@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+    body {
+        font-size: 24px;
+        text-align: center;
+    }
+    .demo {
+        width: 570px;
+        display: inline-block;
+        margin: 0 0;
+        text-align: left;
+    }
+
+    input {
+        border: 1px solid #000;
+        border-radius: 3px;
+        display: inline-block;
+        font-size: 16px;
+        height: 45px;
+        line-height: 45px;
+        margin: 3px 0 9px;
+        padding: 0 9px;
+    }
+
+    button {
+        font-size: 16px;
+        height: 45px;
+        line-height: 45px;
+        padding: 0 15px;
+    }
+</style>
+    <div class="demo">
+        <h1>
+            The Best Music
+        </h1>
+        <br>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"
+                allowfullscreen></iframe>
+
+        <form id="form">
+            Comment:<br>
+            <input placeholder="your comment here" id="comment" name="comment" required>
+            <br>
+            <button>Submit</button>
+        </form>
+
+        <p id="demo"></p>
+
+    </div>
+    <script src="http://localhost:8081/primus/primus.js"></script>
+    <script>
+      // connect to current URL
+      var primus = Primus.connect("http://localhost:8081")
+
+      primus.on("open", function () {
+        console.log("Connected!")
+      })
+
+      primus.on("data", function (message) {
+        if (message.isError) {
+          return handleError(message.data)
+        } else {
+          return updateComment(message.data)
+        }
+      })
+
+      function handleError (data) {
+        window.alert('Sorry your comment: ' + data.comment + ' was not posted because: ' + data.errorMessage )
+      }
+
+      function updateComment (data) {
+        let list = "<ul>"
+
+        data.comments.forEach((comment) => {
+          list += "<li>" + comment + "</li>"
+        })
+        list += "</ul>"
+        document.getElementById("demo").innerHTML = list
+        console.log(list)
+      }
+
+      document.getElementById('form').addEventListener('submit', function (e) {
+          e.preventDefault()
+          var comment = document.getElementById("comment").value
+          console.log('publish data', comment)
+          primus.write({
+            comment: comment
+          })
+          document.getElementById("comment").value = ''
+        })
+    </script>
+</body>
+</html>
