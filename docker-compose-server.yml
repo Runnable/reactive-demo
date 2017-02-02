@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  frontend:
+    restart: always
+    build: ./frontend
+    environment:
+      PORT: 80
+      RABBITMQ_HOSTNAME: rabbit
+    ports:
+    - 80:80
+    links:
+    - rabbit
+    depends_on:
+    - rabbit
+
+  rabbit:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+    - 5672:5672
+    - 15672:15672
+
