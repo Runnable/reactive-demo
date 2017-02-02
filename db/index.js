@@ -13,7 +13,7 @@ var count = 0
  * @return {Promise}
  */
 const commentNormalized = (job) => {
-  return new Promise(() => {
+  return Promise.resolve().then(() => {
     publisher.publishTask('comment.save', {
       version: 'v1',
       comment: job.comment
