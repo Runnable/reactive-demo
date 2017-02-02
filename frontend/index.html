@@ -49,10 +49,10 @@
         <p id="demo"></p>
 
     </div>
-    <script src="http://localhost:8081/primus/primus.js"></script>
+    <script src="primus/primus.js"></script>
     <script>
       // connect to current URL
-      var primus = Primus.connect("http://localhost:8081")
+      var primus = Primus.connect()
 
       primus.on("open", function () {
         console.log("Connected!")
