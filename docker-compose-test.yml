@@ -1,0 +1,73 @@
+version: '2'
+
+services:
+  frontend:
+    restart: always
+    command: true
+    build: ./frontend
+    environment:
+      PORT: 8081
+      RABBITMQ_HOSTNAME: rabbit
+    ports:
+    - 8081:8081
+    links:
+    - rabbit
+    depends_on:
+    - redis
+    - rabbit
+    - db
+    - emailer
+    - parser
+
+  db:
+    restart: always
+    command: true
+    build: ./db
+    environment:
+      RABBITMQ_HOSTNAME: rabbit
+      REDIS_HOST: redis
+    links:
+    - redis
+    - rabbit
+    depends_on:
+    - redis
+    - rabbit
+
+  emailer:
+    restart: always
+    command: true
+    build: ./emailer
+    environment:
+      RABBITMQ_HOSTNAME: rabbit
+      EMAIL_ADDR: lucepeye@go2usa.info
+    links:
+    - rabbit
+    depends_on:
+    - rabbit
+
+  parser:
+    restart: always
+    command: true
+    build: ./parser
+    environment:
+      RABBITMQ_HOSTNAME: rabbit
+    links:
+    - rabbit
+    depends_on:
+    - rabbit
+    - db
+
+  rabbit:
+    image: rabbitmq:3-management
+    restart: always
+    command: true
+    ports:
+    - 5672:5672
+    - 15672:15672
+
+  redis:
+    image: redis:3.0
+    restart: always
+    command: true
+    ports:
+    - 6379:6379
