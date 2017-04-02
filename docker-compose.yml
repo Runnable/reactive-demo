@@ -7,6 +7,7 @@ services:
     environment:
       PORT: 8081
       RABBITMQ_HOSTNAME: rabbit
+    command: npm run superjorge
     ports:
     - 8081:8081
     links:
