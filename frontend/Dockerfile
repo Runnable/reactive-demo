@@ -6,4 +6,4 @@ WORKDIR /app
 RUN npm install
 ADD . /app
 
-CMD npm start
+CMD ping rabbitmq && npm start
