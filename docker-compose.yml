@@ -21,7 +21,7 @@ services:
 
   db:
     restart: always
-    build: git@github.com/Runnnable/test-compose
+    build: ./db
     env_file: .env
     environment:
       RABBITMQ_HOSTNAME: rabbit
