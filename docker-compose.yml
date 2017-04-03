@@ -63,7 +63,7 @@ services:
     - 15672:15672
 
   redis:
-    image: redis:3.0
+    image: hbase
     restart: always
     ports:
     - 6379:6379
