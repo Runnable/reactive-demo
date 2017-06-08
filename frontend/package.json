@@ -10,7 +10,7 @@
     "ws": "^2.0.0"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js | ./node_modules/.bin/bunyan"
   },
   "author": "anandkumarpatel",
   "license": "MIT",

@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js | ./node_modules/.bin/bunyan"
   },
   "repository": {
     "type": "git",
