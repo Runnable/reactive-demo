@@ -36,7 +36,7 @@ services:
     build: ./emailer
     environment:
       RABBITMQ_HOSTNAME: rabbit
-      EMAIL_ADDR: lucepeye@go2usa.info
+      EMAIL_ADDR: reactive-demo@null.net
     links:
     - rabbit
     depends_on:
