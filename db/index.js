@@ -5,8 +5,6 @@ const redis = require('redis').createClient({
   host: process.env.REDIS_HOST || 'localhost'
 })
 
-var count = 0
-
 /**
  * Responds to normalized comment event by emitting comment.save
  * @param  {Object} job
@@ -23,8 +21,7 @@ const commentNormalized = (job) => {
 
 /**
  * Saves comment in database and emits event comment.update
- * with all of the comments in the database. We also send
- * a count so consumers know the latest data.
+ * with all of the comments in the database.
  * @param  {Object} job
  * @return {Promise}
  */
@@ -54,11 +51,10 @@ const userConnected = (job) => {
 const getDataAndEmitUpdateEvent = (resolve, reject) => {
   redis.lrange('comments', 0, -1, (err, comments) => {
     if (err) { return reject(err) }
-    count++
 
     publisher.publishEvent('comments.updated', {
       version: 'v1',
-      count: count,
+      count: comments.length,
       comments: comments
     })
     resolve()
