@@ -1,0 +1,12 @@
+name: reactive-demo
+version: 1.0.0
+description: This repo contains a demo stack for a reactive architecture
+keywords:
+  - reactive architecture
+home: The URL of this project's home page (optional)
+sources:
+  - https://github.com/Runnable/reactive-demo
+maintainers: # (optional)
+  - name: anandkumarpatel
+    email: anand.patel@mulesoft.com
+engine: gotpl 

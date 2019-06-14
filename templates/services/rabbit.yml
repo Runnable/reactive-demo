@@ -1,0 +1,24 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rabbit
+spec:
+  selector:
+    app: rabbit
+  ports:
+    - protocol: TCP
+      port: 5672
+      targetPort: 5672
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: rabbit-admin
+spec:
+  selector:
+    app: rabbit
+  ports:
+    - protocol: TCP
+      port: 15672
+      targetPort: 15672
+  type: LoadBalancer

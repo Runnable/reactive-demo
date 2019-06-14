@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: parser
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: parser
+    spec:
+      containers:
+      - name: parser
+        image: runnable/reactive-demo:parser
+        env:
+        - name: RABBITMQ_HOSTNAME
+          value: rabbit
