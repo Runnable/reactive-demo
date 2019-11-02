@@ -7,7 +7,7 @@
     "joi": "^9.0.4",
     "ponos": "^5.8.2",
     "primus": "^6.0.9",
-    "ws": "^2.0.0"
+    "ws": "^7.2.0"
   },
   "scripts": {
     "start": "node index.js | ./node_modules/.bin/bunyan"
